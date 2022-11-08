@@ -2,7 +2,7 @@ import pickle
 from nltk.corpus import stopwords
 import re
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
-
+import os
 
 def f_casefold(arg_text: str) -> str:
     """
@@ -106,7 +106,7 @@ def f_stemming(arg_list: list) -> str:
 
 
 # Load Model
-filename = r'C:\Users\hafid\main\Project\ml_model\sentiment_model\finalized_model.sav'
+filename = r'{}\finalized_model.sav'.format(os.getcwd())
 loaded_model = pickle.load(open(filename, 'rb'))
 
 
@@ -117,3 +117,4 @@ def get_sentiment(arg_string):
     out_sent = f_stopword(out_sent)
     out_sent = f_stemming(out_sent)
     return loaded_model.predict([out_sent])[0]
+    
